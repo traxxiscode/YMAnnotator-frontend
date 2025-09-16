@@ -1,0 +1,15 @@
+{
+    "name": "Yard Move Zone Manager",
+    "supportEmail": "parker@traxxisgps.com",
+    "version": "1.0",
+    "items": [
+        {
+            "url": "index.html",
+            "category": "AddIns",
+            "menuName": {
+                "en": "Yard Move Zone Manager"
+            }
+        }
+    ],
+    "isSigned": false
+}
