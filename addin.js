@@ -41,10 +41,19 @@ geotab.addin.yardMoveZones = function () {
         if (!api || !window.db) {
             return;
         }
-        
+
         try {
-            // Wait for auth to be ready before hitting Firestore
-            await firebase.auth().authStateReady();
+            await new Promise((resolve, reject) => {
+                firebase.auth().onAuthStateChanged(user => {
+                    if (user) {
+                        resolve(user);
+                    } else {
+                        firebase.auth().signInAnonymously()
+                            .then(resolve)
+                            .catch(reject);
+                    }
+                });
+            });
 
             api.getSession(async function(session) {
                 const databaseName = session.database;
