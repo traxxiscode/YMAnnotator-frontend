@@ -43,17 +43,18 @@ geotab.addin.yardMoveZones = function () {
         }
         
         try {
+            // Wait for auth to be ready before hitting Firestore
+            await firebase.auth().authStateReady();
+
             api.getSession(async function(session) {
                 const databaseName = session.database;
                 
                 if (databaseName && databaseName !== 'demo') {
-                    // Check if database already exists
                     const querySnapshot = await window.db.collection('geotab_databases')
                         .where('database_name', '==', databaseName)
                         .get();
                     
                     if (querySnapshot.empty) {
-                        // Add new database
                         await window.db.collection('geotab_databases').add({
                             database_name: databaseName,
                             added_at: firebase.firestore.FieldValue.serverTimestamp(),

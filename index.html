@@ -109,19 +109,24 @@
     <script src="addin.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script>
-    // Initialize Firebase (replace with your config)
     const firebaseConfig = {
-    apiKey: "AIzaSyBCd-g7VtCvpIMdvmWV8CsFgHlpiE_ZaQY",
-    authDomain: "ymannotator.firebaseapp.com",
-    projectId: "ymannotator",
-    storageBucket: "ymannotator.firebasestorage.app",
-    messagingSenderId: "713644241377",
-    appId: "1:713644241377:web:ea0ec9a1e14fa1c998a2a0"
+        apiKey: "AIzaSyBCd-g7VtCvpIMdvmWV8CsFgHlpiE_ZaQY",
+        authDomain: "ymannotator.firebaseapp.com",
+        projectId: "ymannotator",
+        storageBucket: "ymannotator.firebasestorage.app",
+        messagingSenderId: "713644241377",
+        appId: "1:713644241377:web:ea0ec9a1e14fa1c998a2a0"
     };
-    
+
     firebase.initializeApp(firebaseConfig);
     window.db = firebase.firestore();
+
+    // Sign in anonymously before any Firestore calls are made
+    firebase.auth().signInAnonymously()
+        .then(() => console.log('Firebase auth ready'))
+        .catch((error) => console.error('Firebase auth error:', error));
     </script>
 </body>
 </html>
