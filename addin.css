@@ -1,15 +1,33 @@
+/* Yard Move Zone Manager - Styles */
+
+:root {
+    --primary-orange: #FF6B35;
+    --primary-blue: #0C2853;
+    --light-blue: #1A4A7A;
+    --dark-blue: #0C1E42;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --light-primary: rgba(255, 107, 53, 0.1);
+    --light-secondary: rgba(12, 40, 83, 0.1);
+}
+
 body {
     background-color: #f8f9fa;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* ── Consistent Header ── */
 .header {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(135deg, #0C1E42 0%, #0C2853 100%);
     color: white;
-    padding: 1.5rem 0;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-    position: relative;
-    overflow: hidden;
+    padding: 0;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .header::before {
@@ -19,51 +37,57 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.03) 50%, transparent 70%);
     pointer-events: none;
 }
 
 .header-content {
     position: relative;
     z-index: 2;
+    width: 100%;
 }
 
 .company-logo {
-    max-height: 50px;
+    height: 36px;
     width: auto;
+    display: block;
     transition: all 0.3s ease;
-    filter: brightness(1.1);
 }
 
 .company-logo:hover {
     transform: scale(1.05);
-    filter: brightness(1.2);
+    filter: brightness(1.1);
 }
 
 .header-title {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 700;
     margin: 0;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    color: white;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
 }
 
 .header-subtitle {
-    font-size: 0.95rem;
-    opacity: 0.9;
-    margin: 0;
-    font-weight: 300;
+    font-size: 0.8rem;
+    opacity: 0.85;
+    margin: 0.15rem 0 0 0;
+    line-height: 1.3;
+    letter-spacing: 0.03em;
 }
 
 .header-buttons {
     display: flex;
     gap: 10px;
     align-items: center;
+    justify-content: flex-end;
 }
 
+/* Zone Containers */
 .zone-container {
     background: white;
     border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     min-height: 500px;
     max-height: 70vh;
     overflow-y: auto;
@@ -85,13 +109,13 @@ body {
     margin: 8px 0;
     cursor: grab;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     border: none;
 }
 
 .zone-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .zone-item:active {
@@ -100,7 +124,7 @@ body {
 }
 
 .yard-move-zone {
-    background: linear-gradient(135deg, #03adfc 0%, #0394fc 100%);
+    background: linear-gradient(135deg, #0C2853 0%, #1A4A7A 100%);
 }
 
 .zone-header {
@@ -114,7 +138,7 @@ body {
 }
 
 .zone-header.aqua {
-    background: linear-gradient(135deg, #03adfc 0%, #0394fc 100%);
+    background: linear-gradient(135deg, #0C1E42 0%, #0C2853 100%);
 }
 
 .search-container {
@@ -139,8 +163,8 @@ body {
 }
 
 .search-input.aqua:focus {
-    border-color: #00bcd4;
-    box-shadow: 0 0 0 0.2rem rgba(0, 188, 212, 0.25);
+    border-color: #0C2853;
+    box-shadow: 0 0 0 0.2rem rgba(12, 40, 83, 0.25);
 }
 
 .zone-header h4 {
@@ -176,7 +200,7 @@ body {
 .alert {
     border-radius: 10px;
     border: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn-refresh {
@@ -218,24 +242,21 @@ body {
 }
 
 @media (max-width: 768px) {
+    .header { height: auto; padding: 0.75rem 0; }
+    .header-title { font-size: 1.15rem; }
+    .header-subtitle { display: none; }
+    .company-logo { height: 28px; }
+
     .zone-container {
         min-height: 300px;
         margin-bottom: 20px;
     }
-    
-    .header {
-        padding: 1rem 0;
-    }
-    
-    .header-title {
-        font-size: 1.5rem;
-    }
-    
+
     .header-buttons {
         flex-direction: column;
         gap: 8px;
     }
-    
+
     .btn-refresh, .btn-create-zone {
         width: 100%;
     }
