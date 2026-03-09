@@ -197,15 +197,6 @@ body {
     opacity: 0.5;
 }
 
-.btn-refresh.btn-loading,
-.btn-create-zone {
-    display: inline-flex;
-    align-items: center;
-}
-
-.btn-loading .btn-text { transition: opacity 0.3s ease; }
-.btn-loading.loading .btn-text { display: none !important; }
-.btn-loading.loading .btn-loading-text { display: inline-flex !important; align-items: center; }
 
 .btn-refresh {
     background: linear-gradient(135deg, #e55a2b 0%, #d4761a 100%);
@@ -216,6 +207,8 @@ body {
     transition: all 0.3s ease;
     font-weight: 500;
     box-shadow: 0 4px 15px rgba(229, 90, 43, 0.3);
+    display: inline-flex;
+    align-items: center;
 }
 
 .btn-refresh:hover {
@@ -233,6 +226,8 @@ body {
     transition: all 0.3s ease;
     font-weight: 500;
     box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    display: inline-flex;
+    align-items: center;
 }
 
 .btn-create-zone:hover {
