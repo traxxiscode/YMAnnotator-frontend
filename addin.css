@@ -197,11 +197,15 @@ body {
     opacity: 0.5;
 }
 
-.alert {
-    border-radius: 10px;
-    border: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+.btn-refresh.btn-loading,
+.btn-create-zone {
+    display: inline-flex;
+    align-items: center;
 }
+
+.btn-loading .btn-text { transition: opacity 0.3s ease; }
+.btn-loading.loading .btn-text { display: none !important; }
+.btn-loading.loading .btn-loading-text { display: inline-flex !important; align-items: center; }
 
 .btn-refresh {
     background: linear-gradient(135deg, #e55a2b 0%, #d4761a 100%);

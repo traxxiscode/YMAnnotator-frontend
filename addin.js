@@ -260,39 +260,35 @@ geotab.addin.yardMoveZones = function () {
     }
 
     /**
-     * Show alert messages
+     * Show/hide button loading state
+     */
+    function setButtonLoading(buttonId, loading = true) {
+        const button = document.getElementById(buttonId);
+        if (!button) return;
+
+        const btnText = button.querySelector('.btn-text');
+        const btnLoadingText = button.querySelector('.btn-loading-text');
+
+        if (loading) {
+            button.disabled = true;
+            if (btnText) btnText.style.display = 'none';
+            if (btnLoadingText) btnLoadingText.style.display = 'inline-flex';
+        } else {
+            button.disabled = false;
+            if (btnText) btnText.style.display = 'inline-flex';
+            if (btnLoadingText) btnLoadingText.style.display = 'none';
+        }
+    }
+
+    /**
+     * Log messages (alerts removed from UI)
      */
     function showAlert(message, type = 'info') {
-        const alertContainer = document.getElementById('alertContainer');
-        if (!alertContainer) return;
-        
-        const alertId = 'alert-' + Date.now();
-        
-        const iconMap = {
-            'success': 'check-circle',
-            'danger': 'exclamation-triangle',
-            'warning': 'exclamation-triangle',
-            'info': 'info-circle'
-        };
-        
-        const alertHtml = `
-            <div class="alert alert-${type} alert-dismissible fade show" id="${alertId}" role="alert">
-                <i class="fas fa-${iconMap[type]} me-2"></i>
-                ${message}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        `;
-        
-        alertContainer.insertAdjacentHTML('beforeend', alertHtml);
-        
-        // Auto-remove after 5 seconds
-        setTimeout(() => {
-            const alert = document.getElementById(alertId);
-            if (alert && typeof bootstrap !== 'undefined' && bootstrap.Alert) {
-                const bsAlert = new bootstrap.Alert(alert);
-                bsAlert.close();
-            }
-        }, 3000);
+        if (type === 'danger' || type === 'warning') {
+            console.error(`[${type}] ${message}`);
+        } else {
+            console.log(`[${type}] ${message}`);
+        }
     }
 
     /**
@@ -519,7 +515,12 @@ geotab.addin.yardMoveZones = function () {
      * Refresh zones data
      */
     window.refreshZones = async function() {
-        await loadZones();
+        setButtonLoading('refreshBtn', true);
+        try {
+            await loadZones();
+        } finally {
+            setButtonLoading('refreshBtn', false);
+        }
     };
 
     /**
